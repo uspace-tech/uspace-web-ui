@@ -1,5 +1,6 @@
 {
   "name": "@uspace-tech/web-ui",
+  "private": false,
   "version": "0.1.4",
   "description": "",
   "main": "dist/src/index.js",
@@ -43,5 +44,8 @@
     "plugins": [
       "npm"
     ]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

@@ -1,3 +1,16 @@
+# v0.1.7 (Mon Jan 13 2025)
+
+#### ⚠️ Pushed to `main`
+
+- docs: 文件路徑修正 ([@wlcharlie](https://github.com/wlcharlie))
+- fix: 修正 Provider 未能正確 export ([@wlcharlie](https://github.com/wlcharlie))
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
 # v0.1.6 (Mon Jan 13 2025)
 
 #### ⚠️ Pushed to `main`

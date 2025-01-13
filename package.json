@@ -5,10 +5,7 @@
   "main": "dist/src/index.js",
   "types": "dist/types/index.d.ts",
   "author": "Charlie <wl00606352@gmail.com>",
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/uspace-tech/uspace-web-ui.git"
-  },
+  "repository": "git@github.com:uspace-tech/uspace-web-ui.git",
   "scripts": {
     "build": "rimraf dist && tsc -b tsconfig.build.json && storybook build",
     "test": "echo \"Error: no test specified\" && exit 1",

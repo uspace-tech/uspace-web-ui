@@ -5,7 +5,7 @@
   "main": "dist/src/index.js",
   "types": "dist/types/index.d.ts",
   "scripts": {
-    "build": "rimraf dist && tsc -b tsconfig.build.json",
+    "build": "rimraf dist && tsc -b tsconfig.build.json && storybook build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
@@ -32,5 +32,8 @@
     "rimraf": "^6.0.1",
     "storybook": "^8.4.7",
     "typescript": "^5.7.3"
+  },
+  "volta": {
+    "node": "20.10.0"
   }
 }

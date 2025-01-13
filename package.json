@@ -1,16 +1,18 @@
 {
-  "name": "uspace-ui",
+  "name": "@uspace-tech/web-ui",
   "version": "0.1.0",
   "description": "",
   "main": "dist/src/index.js",
   "types": "dist/types/index.d.ts",
+  "author": "Charlie <wl00606352@gmail.com>",
+  "repository": "git@github.com:uspace-tech/uspace-web-ui.git",
   "scripts": {
     "build": "rimraf dist && tsc -b tsconfig.build.json && storybook build",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "release": "auto shipit"
   },
-  "author": "",
   "license": "ISC",
   "devDependencies": {
     "@chakra-ui/react": "^3.3.0",
@@ -25,6 +27,7 @@
     "@storybook/test": "^8.4.7",
     "@types/react": "^19.0.4",
     "@types/react-dom": "^19.0.2",
+    "auto": "^11.3.0",
     "next-themes": "^0.4.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
@@ -35,5 +38,10 @@
   },
   "volta": {
     "node": "20.10.0"
+  },
+  "auto": {
+    "plugins": [
+      "npm"
+    ]
   }
 }

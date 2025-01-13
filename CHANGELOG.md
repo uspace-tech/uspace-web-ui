@@ -1,3 +1,20 @@
+# v0.1.6 (Mon Jan 13 2025)
+
+#### ⚠️ Pushed to `main`
+
+- chore: 移除發布時不需要上傳的檔案 ([@wlcharlie](https://github.com/wlcharlie))
+- fix: package.json information adjustment ([@wlcharlie](https://github.com/wlcharlie))
+- chore ([@wlcharlie](https://github.com/wlcharlie))
+- chore: 修正 linter 之錯誤 ([@wlcharlie](https://github.com/wlcharlie))
+- first commit ([@wlcharlie](https://github.com/wlcharlie))
+- Initial commit ([@wlcharlie](https://github.com/wlcharlie))
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
 # v0.1.5 (Mon Jan 13 2025)
 
 #### ⚠️ Pushed to `main`

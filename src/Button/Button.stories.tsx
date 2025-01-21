@@ -1,9 +1,9 @@
 import React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
-
-import { Button } from "./Button"
 import { Stack } from "@chakra-ui/react"
 import { IoNavigateCircle } from "react-icons/io5"
+
+import { Button } from "./Button"
 
 const meta = {
   title: "UPSACE/Button",
@@ -12,7 +12,7 @@ const meta = {
     layout: "centered",
     docs: {
       description: {
-        component: "就是一顆按鈕，繼承來自 `chakra('button')`",
+        component: "就是一顆按鈕，繼承來自 `chakra('button')`，button 可以用的屬性都可以使用",
       },
     },
   },

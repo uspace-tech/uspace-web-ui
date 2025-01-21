@@ -13,11 +13,11 @@ type ButtonProps = {
 const CustomButton = chakra("button", buttonRecipe)
 
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  const { children, startIcon, endIcon, ...restProps } = props
+  const { children, startIcon, endIcon, loading, ...restProps } = props
   return (
-    <CustomButton ref={ref} {...restProps} disabled={Boolean(restProps.disabled || restProps.loading)}>
+    <CustomButton ref={ref} {...restProps} disabled={Boolean(restProps.disabled || loading)}>
       {startIcon && <Icon fontSize="24px">{startIcon}</Icon>}
-      {restProps.loading ? <Spinner size="inherit" color="inherit" /> : children}
+      {loading ? <Spinner size="inherit" color="inherit" /> : children}
       {endIcon && <Icon fontSize="24px">{endIcon}</Icon>}
     </CustomButton>
   )

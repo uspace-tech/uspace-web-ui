@@ -16,7 +16,7 @@
   },
   "license": "ISC",
   "devDependencies": {
-    "@chakra-ui/react": "^3.3.0",
+    "@chakra-ui/react": "^3.4.0",
     "@chromatic-com/storybook": "^3.2.3",
     "@emotion/react": "^11.14.0",
     "@storybook/addon-essentials": "^8.4.7",
@@ -48,5 +48,8 @@
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "@chakra-ui/react": "^3.4.0"
   }
 }

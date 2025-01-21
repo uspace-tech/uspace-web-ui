@@ -1,6 +1,5 @@
 import React, { useState } from "react"
 import type { Meta, StoryObj } from "@storybook/react"
-import { Stack } from "@chakra-ui/react"
 
 import { TextField } from "./TextField"
 import { expect, userEvent } from "@storybook/test"
@@ -63,11 +62,7 @@ export const WithClear: Story = {
       setValue("")
     }
 
-    return (
-      <Stack>
-        <TextField {...args} value={value} onChange={(e) => setValue(e.target.value)} onClear={handleClear} />
-      </Stack>
-    )
+    return <TextField {...args} value={value} onChange={(e) => setValue(e.target.value)} onClear={handleClear} />
   },
 
   play: async ({ canvasElement }) => {

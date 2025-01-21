@@ -25,12 +25,13 @@ const TextFieldClear = withContext<HTMLButtonElement, TextFieldClearProps>("butt
 type TextFieldProps = {
   label: string
   onClear?: () => void
+  rootProps?: TextFieldRootProps
 } & TextFieldInputProps
 
 export const TextField = (props: TextFieldProps) => {
-  const { label, className, placeholder, required, onClear, ...restProps } = props
+  const { label, className, placeholder, required, onClear, rootProps, ...restProps } = props
   return (
-    <TextFieldRoot>
+    <TextFieldRoot {...rootProps}>
       <TextFieldInput required={required} className={(className || "") + " peer"} placeholder={placeholder || ""} {...restProps} />
       <TextFieldLabel {...(required ? { "data-required": true } : {})}>{label}</TextFieldLabel>
       {onClear && (

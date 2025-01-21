@@ -12,10 +12,9 @@ export const textFieldRecipe = defineSlotRecipe({
   slots: ["root", "input", "label", "clear"],
   base: {
     root: {
-      display: "block",
+      display: "flex",
       position: "relative",
-      width: "fit-content",
-      height: "fit-content",
+      width: "100%",
     },
     input: {
       background: "materialBg",
@@ -23,6 +22,7 @@ export const textFieldRecipe = defineSlotRecipe({
       focusRingColor: "primary",
       focusRingWidth: "2px",
 
+      width: "100%",
       height: "56px",
 
       borderRadius: "8px",

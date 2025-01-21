@@ -1,3 +1,15 @@
+# v0.1.9 (Tue Jan 21 2025)
+
+#### ⚠️ Pushed to `main`
+
+- fix: 修正 TextField 未能正確匯出 ([@wlcharlie](https://github.com/wlcharlie))
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
 # v0.1.8 (Tue Jan 21 2025)
 
 #### ⚠️ Pushed to `main`

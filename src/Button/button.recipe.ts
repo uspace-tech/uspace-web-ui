@@ -6,6 +6,11 @@ export const buttonRecipe = defineRecipe({
     height: "56px",
     minWidth: "72px",
     px: "5",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: "4px",
+
     borderRadius: "8px",
     textStyle: "notoH16",
     _disabled: {

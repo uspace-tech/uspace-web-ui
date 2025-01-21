@@ -1,26 +1,36 @@
 import React from "react"
 import type { Meta, StoryObj } from "@storybook/react"
-import { fn } from "@storybook/test"
 
 import { Button } from "./Button"
 import { Stack } from "@chakra-ui/react"
+import { IoNavigateCircle } from "react-icons/io5"
 
 const meta = {
   title: "UPSACE/Button",
   component: Button,
   parameters: {
     layout: "centered",
+    docs: {
+      description: {
+        component: "就是一顆按鈕，繼承來自 `chakra('button')`",
+      },
+    },
   },
   args: {
     children: "按鈕 Button 1234",
     width: "350px",
     level: "primary",
-    onClick: fn(),
+    disabled: false,
+    loading: false,
   },
   argTypes: {
-    width: { control: "text" },
-    level: { control: "select", options: ["primary", "secondary", "negative", "dangerous"] },
-    onClick: { action: "clicked" },
+    children: { control: "text", description: "按鈕文字" },
+    width: { control: "text", description: "預設會填滿整個容器，但可透過 `width` | `flex` 來調整寬度" },
+    level: { control: "select", description: "按鈕等級", options: ["primary", "secondary", "negative", "dangerous"] },
+    disabled: { control: "boolean" },
+    loading: { control: "boolean" },
+    startIcon: { control: false, description: "按鈕左側的Icon" },
+    endIcon: { control: false, description: "按鈕右側的Icon" },
   },
 } satisfies Meta<typeof Button>
 
@@ -30,6 +40,20 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {},
+}
+
+export const WithIcon: Story = {
+  args: {},
+  render: (args) => (
+    <Stack>
+      <Button {...args} startIcon={<IoNavigateCircle />}>
+        Primary
+      </Button>
+      <Button {...args} endIcon={<IoNavigateCircle />}>
+        Primary
+      </Button>
+    </Stack>
+  ),
 }
 
 export const Loading: Story = {

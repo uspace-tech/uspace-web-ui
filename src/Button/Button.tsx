@@ -1,19 +1,23 @@
 "use client"
 import React from "react"
-import { chakra, Spinner } from "@chakra-ui/react"
+import { chakra, Icon, Spinner } from "@chakra-ui/react"
 import { buttonRecipe } from "./button.recipe"
 
 type ButtonProps = {
   loading?: boolean
+  startIcon?: React.ReactNode
+  endIcon?: React.ReactNode
 } & React.ComponentProps<typeof CustomButton>
 
 const CustomButton = chakra("button", buttonRecipe)
 
-export const Button = (props: ButtonProps) => {
-  const { children, ...restProps } = props
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
+  const { children, startIcon, endIcon, ...restProps } = props
   return (
-    <CustomButton {...restProps} disabled={Boolean(restProps.disabled || restProps.loading)}>
+    <CustomButton ref={ref} {...restProps} disabled={Boolean(restProps.disabled || restProps.loading)}>
+      {startIcon && <Icon fontSize="24px">{startIcon}</Icon>}
       {restProps.loading ? <Spinner size="inherit" color="inherit" /> : children}
+      {endIcon && <Icon fontSize="24px">{endIcon}</Icon>}
     </CustomButton>
   )
-}
+})

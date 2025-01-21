@@ -1,3 +1,18 @@
+# v0.1.8 (Tue Jan 21 2025)
+
+#### ⚠️ Pushed to `main`
+
+- docs: 文件更新 ([@wlcharlie](https://github.com/wlcharlie))
+- feat: TextField ([@wlcharlie](https://github.com/wlcharlie))
+- feat: Button 加入 icon 以及 ref ([@wlcharlie](https://github.com/wlcharlie))
+- chore: 升級依賴套件 ([@wlcharlie](https://github.com/wlcharlie))
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
 # v0.1.7 (Mon Jan 13 2025)
 
 #### ⚠️ Pushed to `main`

@@ -1,3 +1,16 @@
+# v0.1.11 (Tue Jan 21 2025)
+
+#### ⚠️ Pushed to `main`
+
+- build (wl00606352@gmail.com)
+- fix: 修正 Button loading prop forward 問題 (wl00606352@gmail.com)
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
 # v0.1.10 (Tue Jan 21 2025)
 
 #### ⚠️ Pushed to `main`

@@ -14,6 +14,16 @@ npm i @chakra-ui/react @emotion/react react-icons
 npm i @uspace-tech/web-ui
 ```
 
+## Publish
+
+```
+npm run build
+
+commit 所有內容
+
+npm run release
+```
+
 ## Usage
 
 務必先引入 <Provider> 元件，並將 <Provider> 元件包在所有元件的外層。

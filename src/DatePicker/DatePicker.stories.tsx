@@ -21,7 +21,7 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    value: new Date(2025, 1, 19),
+    value: new Date(),
     minDate: new Date(2025, 1, 12),
     maxDate: new Date(2025, 1, 25),
     disabledDates: [new Date(2025, 1, 17), new Date(2025, 1, 23)],
@@ -32,7 +32,7 @@ export const Default: Story = {
 // export const Default: Story = {
 //   args: {},
 //   render: (args) => {
-//     const [value, setValue] = React.useState(new Date(2025, 1, 19))
+//     const [value, setValue] = React.useState(new Date())
 //     const minDate = new Date(2025, 1, 12)
 //     const maxDate = new Date(2025, 1, 25)
 //     const disabledDates = [new Date(2025, 1, 17), new Date(2025, 1, 23)]

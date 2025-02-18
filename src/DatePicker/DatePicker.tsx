@@ -108,7 +108,13 @@ const Day = ({ day, date, isToday }: DayProps) => {
         _hover={{ bg: isChosen ? "default" : isDisabled ? "transparent" : "materialBg" }}
         onClick={() => {
           if (isDisabled) return
-          onDateChange?.(date)
+          const prevDate = value
+          const newDate = new Date(prevDate)
+          newDate.setFullYear(date.getFullYear())
+          newDate.setMonth(date.getMonth())
+          newDate.setDate(date.getDate())
+
+          onDateChange?.(newDate)
         }}
         gap="0"
       >

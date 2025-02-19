@@ -1,3 +1,20 @@
+# v0.1.14 (Wed Feb 19 2025)
+
+#### 🐛 Bug Fix
+
+- feat: 時間選擇器（簡易版） [#1](https://github.com/uspace-tech/uspace-web-ui/pull/1) ([@wlcharlie](https://github.com/wlcharlie))
+
+#### ⚠️ Pushed to `main`
+
+- chore: 更新 storybook ([@wlcharlie](https://github.com/wlcharlie))
+- chore: update readme ([@wlcharlie](https://github.com/wlcharlie))
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
 # v0.1.13 (Wed Feb 12 2025)
 
 #### ⚠️ Pushed to `main`

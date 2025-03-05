@@ -68,17 +68,26 @@ export const ModalIcon = withContext<HTMLSpanElement, ModalIconProps>("span", "i
 
 interface ModalProps {
   open: boolean
-  title: string
-  subtitle: string
-  text: string
-  imageUrl: string
+  title?: string
+  subtitle?: string
+  text?: string
+  imageUrl?: string
+  headerProps?: React.ComponentProps<typeof ModalHeader>
   children?: React.ReactNode
   action?: React.ReactNode
-  onClose?: () => void
+  onClose: () => void
   onPrevStep?: () => void
 }
+/**
+ * 符合設計需求的Modal
+ * - 上方操作按鈕 上一步 與 關閉
+ * - 上方圖片
+ * - 中間文字內容
+ * - 文字內容與按鈕空間之間的洞 （有提供 `children` 空間，自行發揮）
+ * - 下方按鈕空間 （不包含按鈕 自行發揮）
+ */
 export const Modal = (props: ModalProps) => {
-  const { open, title, subtitle, text, imageUrl, children, action, onClose, onPrevStep } = props
+  const { open, title, subtitle, text, imageUrl, headerProps, children, action, onClose, onPrevStep } = props
 
   const handlePrevStep = () => {
     onPrevStep?.()
@@ -109,7 +118,7 @@ export const Modal = (props: ModalProps) => {
         animationDuration="moderate"
       >
         <ModalContent>
-          <ModalHeader data-img={Boolean(imageUrl)} backgroundImage={`url(${imageUrl})`}>
+          <ModalHeader {...headerProps} data-img={Boolean(imageUrl)} {...(imageUrl && { backgroundImage: `url(${imageUrl})` })}>
             {onPrevStep && (
               <ModalIcon onClick={handlePrevStep}>
                 <MdChevronLeft />
@@ -121,9 +130,9 @@ export const Modal = (props: ModalProps) => {
             </ModalIcon>
           </ModalHeader>
           <ModalBody>
-            <ModalTitle>{title}</ModalTitle>
-            <ModalSubtitle>{subtitle}</ModalSubtitle>
-            <ModalText>{text}</ModalText>
+            {title && <ModalTitle>{title}</ModalTitle>}
+            {subtitle && <ModalSubtitle>{subtitle}</ModalSubtitle>}
+            {text && <ModalText>{text}</ModalText>}
             {children}
           </ModalBody>
           <ModalFooter>{action}</ModalFooter>

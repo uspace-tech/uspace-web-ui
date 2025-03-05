@@ -26,10 +26,11 @@ export const modalRecipe = defineSlotRecipe({
       alignItems: "start",
 
       "&[data-img=true]": {
+        backgroundColor: "materialBg",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
-        height: "50vw",
+        height: "clamp(200px, 50vw, 400px)",
         marginBottom: "16px",
       },
     },

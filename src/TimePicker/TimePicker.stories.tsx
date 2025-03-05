@@ -7,11 +7,11 @@ const meta: Meta<typeof TimePicker> = {
   argTypes: {
     minuteStep: { control: "number", description: "分鐘間隔，5 | 10 | 15 | 30" },
   },
-}
+} satisfies Meta<typeof TimePicker>
 
 export default meta
 
-type Story = StoryObj<typeof TimePicker>
+type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {},

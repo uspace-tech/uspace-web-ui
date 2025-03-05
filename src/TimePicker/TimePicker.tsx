@@ -1,58 +1,54 @@
 "use client"
 
 import { Box, Stack, Text } from "@chakra-ui/react"
-import React from "react"
+import React, { useMemo } from "react"
 
-const hourView = [
-  "00",
-  "01",
-  "02",
-  "03",
-  "04",
-  "05",
-  "06",
-  "07",
-  "08",
-  "09",
-  "10",
-  "11",
-  "12",
-  "13",
-  "14",
-  "15",
-  "16",
-  "17",
-  "18",
-  "19",
-  "20",
-  "21",
-  "22",
-  "23",
-]
+type Hour = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23
+type Minute = 0 | 5 | 10 | 15 | 20 | 25 | 30 | 35 | 40 | 45 | 50 | 55
 
-const minuteView = ["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"]
+const hourView: Hour[] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23]
+const minuteView: Minute[] = [0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55]
 
 type TimePickerProps = {
   value: Date
   onChange: (date: Date) => void
   minuteStep?: 5 | 10 | 15 | 30
+  availableGroup?: Array<{
+    hour: Hour
+    minute: Minute[]
+  }>
 }
 
-export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5 }: TimePickerProps) => {
-  const chosenHour = value.getHours().toString().padStart(2, "0")
-  const chosenMinute = value.getMinutes().toString().padStart(2, "0")
+/**
+ * 留意如果傳入的 value Date 的分鐘不是整數，不會顯示任何分鐘（即沒有預設選項）
+ */
+export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, availableGroup }: TimePickerProps) => {
+  const chosenHour = value.getHours()
+  const chosenMinute = value.getMinutes()
   // minuteView 只有整數，但怕使用者忘記點分，故先不處理
 
-  const filteredMinuteView = minuteStep ? minuteView.filter((minute) => parseInt(minute) % minuteStep === 0) : minuteView
+  const steppedMinuteView = useMemo(
+    () => (minuteStep ? minuteView.filter((minute) => minute % minuteStep === 0) : minuteView),
+    [minuteStep]
+  )
+  const filteredMinuteView = useMemo(
+    () =>
+      steppedMinuteView.filter((minute) => {
+        const group = availableGroup?.find((group) => group.hour === chosenHour)
+        if (!group) return true
+        return group.minute.includes(minute)
+      }),
+    [steppedMinuteView, availableGroup, chosenHour]
+  )
 
   React.useEffect(() => {
     // 點選後，該element要至於中間
     const timeout = setTimeout(() => {
-      const chosenHourElement = document.querySelector(`[data-hour="${chosenHour}"]`)
+      const chosenHourElement = document.querySelector(`[data-hour="${chosenHour.toString().padStart(2, "0")}"]`)
       if (chosenHourElement) {
         chosenHourElement.scrollIntoView({ behavior: "smooth", block: "center" })
       }
-      const chosenMinuteElement = document.querySelector(`[data-minute="${chosenMinute}"]`)
+      const chosenMinuteElement = document.querySelector(`[data-minute="${chosenMinute.toString().padStart(2, "0")}"]`)
       if (chosenMinuteElement) {
         chosenMinuteElement.scrollIntoView({ behavior: "smooth", block: "center" })
       }
@@ -60,15 +56,15 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5 }: Tim
     return () => clearTimeout(timeout)
   }, [chosenHour, chosenMinute])
 
-  const handleHourClick = (hour: string) => {
+  const handleHourClick = (hour: number) => {
     const newDate = new Date(value)
-    newDate.setHours(parseInt(hour))
+    newDate.setHours(hour)
     onChange(newDate)
   }
 
-  const handleMinuteClick = (minute: string) => {
+  const handleMinuteClick = (minute: number) => {
     const newDate = new Date(value)
-    newDate.setMinutes(parseInt(minute))
+    newDate.setMinutes(minute)
     onChange(newDate)
   }
 
@@ -86,9 +82,9 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5 }: Tim
             borderRadius="8px"
             onClick={() => handleHourClick(hour)}
             my="1"
-            data-hour={hour}
+            data-hour={hour.toString().padStart(2, "0")}
           >
-            <Text>{hour}</Text>
+            <Text>{hour.toString().padStart(2, "0")}</Text>
           </Stack>
         ))}
         <Box h="calc((100% / 2) - 24px)" />
@@ -105,9 +101,9 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5 }: Tim
             borderRadius="8px"
             onClick={() => handleMinuteClick(minute)}
             my="1"
-            data-minute={minute}
+            data-minute={minute.toString().padStart(2, "0")}
           >
-            <Text>{minute}</Text>
+            <Text>{minute.toString().padStart(2, "0")}</Text>
           </Stack>
         ))}
         <Box h="calc((100% / 2) - 24px)" />

@@ -1,3 +1,16 @@
+# v0.1.19 (Wed Mar 05 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: TimePicker 新增特定時間組合選擇 ([@wlcharlie](https://github.com/wlcharlie))
+- chore: Modal 提供圖片自行設定以及文件 ([@wlcharlie](https://github.com/wlcharlie))
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
 # v0.1.18 (Mon Mar 03 2025)
 
 #### ⚠️ Pushed to `main`

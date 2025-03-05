@@ -2,6 +2,20 @@
 
 #### ⚠️ Pushed to `main`
 
+- chore: bundle (wl00606352@gmail.com)
+- feat: TimePicker 新增特定時間組合選擇 (wl00606352@gmail.com)
+- chore: Modal 提供圖片自行設定以及文件 (wl00606352@gmail.com)
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
+# v0.1.19 (Wed Mar 05 2025)
+
+#### ⚠️ Pushed to `main`
+
 - feat: TimePicker 新增特定時間組合選擇 ([@wlcharlie](https://github.com/wlcharlie))
 - chore: Modal 提供圖片自行設定以及文件 ([@wlcharlie](https://github.com/wlcharlie))
 

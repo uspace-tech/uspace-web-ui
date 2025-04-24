@@ -3,7 +3,7 @@
 import React, { createContext, Fragment, useContext } from "react"
 import { Box, Flex, Stack, Icon, Text } from "@chakra-ui/react"
 import { MdChevronLeft, MdChevronRight } from "react-icons/md"
-import { endOfDay, format, isAfter, isBefore, isSameDay, startOfDay } from "date-fns"
+import { endOfDay, endOfMonth, format, isAfter, isBefore, isSameDay, startOfDay, startOfMonth } from "date-fns"
 import { type DateUnit as DateUnitType, useDatePicker } from "./DatePicker.hook"
 
 const Indicator = ({ color }: { color?: string }) => (
@@ -30,14 +30,19 @@ const DatePickerProvider = ({ children, ...props }: React.PropsWithChildren<Date
  */
 export const DatePicker = (props: DatePickerProps) => {
   const { locale, aspectDate, weekDayView, dayView, handleChangeMonth } = useDatePicker({ locale: props.locale || "enUS" })
-
+  const { minDate, maxDate } = props
+  
   const monthYear = format(aspectDate, "MMM,yyyy", { locale })
 
+  const isAbleToPrevMonth = minDate ? isBefore(minDate, startOfMonth(aspectDate)) : true;
   const handleClickNavPrevMonth = () => {
+    if(!isAbleToPrevMonth) return;
     handleChangeMonth("prev")
   }
 
+  const isAbleToNextMonth = maxDate ? isAfter(maxDate, endOfMonth(aspectDate)) : true;
   const handleClickNavNextMonth = () => {
+    if(!isAbleToNextMonth) return;
     handleChangeMonth("next")
   }
 
@@ -45,11 +50,11 @@ export const DatePicker = (props: DatePickerProps) => {
     <DatePickerProvider {...props}>
       <Box w="100%" maxW="358px" h="100%">
         <Stack justifyContent="space-between" alignItems="center" direction="row" gap="0">
-          <Icon fontSize="24px" onClick={handleClickNavPrevMonth} _hover={{ cursor: "pointer" }}>
+          <Icon fontSize="24px" onClick={handleClickNavPrevMonth} color={isAbleToPrevMonth ? undefined : 'disabled.grey'} _hover={{ cursor: isAbleToPrevMonth ? "pointer" : "disabled" }}>
             <MdChevronLeft />
           </Icon>
           <Text textStyle="notoH16">{monthYear}</Text>
-          <Icon fontSize="24px" onClick={handleClickNavNextMonth} _hover={{ cursor: "pointer" }}>
+          <Icon fontSize="24px" onClick={handleClickNavNextMonth} color={isAbleToNextMonth ? undefined : 'disabled.grey'} _hover={{ cursor: isAbleToNextMonth ? "pointer" : "disabled" }}>
             <MdChevronRight />
           </Icon>
         </Stack>

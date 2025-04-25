@@ -35,5 +35,3 @@ import { Provider } from "@uspace-tech/web-ui"
   <App />
 </Provider>
 ```
-
-???

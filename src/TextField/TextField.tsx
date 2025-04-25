@@ -32,7 +32,7 @@ export const TextField = (props: TextFieldProps) => {
   const { label, className, placeholder, required, onClear, rootProps, ...restProps } = props
   return (
     <TextFieldRoot {...rootProps}>
-      <TextFieldInput required={required} className={(className || "") + " peer"} placeholder={placeholder || ""} {...restProps} />
+      <TextFieldInput required={required} className={(className || "") + " peer"} placeholder={placeholder || " "} {...restProps} />
       <TextFieldLabel {...(required ? { "data-required": true } : {})}>{label}</TextFieldLabel>
       {onClear && (
         <TextFieldClear onClick={onClear}>

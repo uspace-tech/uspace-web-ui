@@ -1,3 +1,15 @@
+# v0.1.20 (Fri Apr 25 2025)
+
+#### 🐛 Bug Fix
+
+- 修正小 UI Bug [#2](https://github.com/uspace-tech/uspace-web-ui/pull/2) ([@wl00887404](https://github.com/wl00887404))
+
+#### Authors: 1
+
+- Max He  ([@wl00887404](https://github.com/wl00887404))
+
+---
+
 # v0.1.19 (Wed Mar 05 2025)
 
 #### ⚠️ Pushed to `main`

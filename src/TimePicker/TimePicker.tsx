@@ -17,15 +17,28 @@ type TimePickerProps = {
     hour: Hour
     minute: Minute[]
   }>
+  /// 0509
+  minHour?: Hour
+  maxHour?: Hour
 }
 
 /**
  * 留意如果傳入的 value Date 的分鐘不是整數，不會顯示任何分鐘（即沒有預設選項）
  */
-export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, availableGroup }: TimePickerProps) => {
+export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, availableGroup, minHour, maxHour }: TimePickerProps) => {
   const chosenHour = value.getHours()
   const chosenMinute = value.getMinutes()
   // minuteView 只有整數，但怕使用者忘記點分，故先不處理
+
+  const filteredHourView = useMemo(
+    () =>
+      hourView.filter((hour) => {
+        if (minHour && hour < minHour) return false
+        if (maxHour && hour > maxHour) return false
+        return true
+      }),
+    [minHour, maxHour]
+  )
 
   const steppedMinuteView = useMemo(
     () => (minuteStep ? minuteView.filter((minute) => minute % minuteStep === 0) : minuteView),
@@ -34,6 +47,7 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, avail
   const filteredMinuteView = useMemo(
     () =>
       steppedMinuteView.filter((minute) => {
+        // availableGroup 限制組合時間
         const group = availableGroup?.find((group) => group.hour === chosenHour)
         if (!group) return true
         return group.minute.includes(minute)
@@ -72,7 +86,7 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, avail
     <Stack direction="row" gap="2" h="180px">
       <Box w="100%" maxW="175px" h="100%" gap="2" overflow="scroll">
         <Box h="calc((100% / 2) - 24px)" />
-        {hourView.map((hour) => (
+        {filteredHourView.map((hour) => (
           <Stack
             key={hour}
             h="40px"

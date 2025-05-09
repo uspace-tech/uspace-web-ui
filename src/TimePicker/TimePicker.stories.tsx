@@ -18,7 +18,34 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    availableGroup: [{ hour: 14, minute: [0, 5, 45, 55] }],
+    availableGroup: [
+      { hour: 0, minute: [] },
+      { hour: 1, minute: [] },
+      { hour: 2, minute: [] },
+      { hour: 3, minute: [] },
+      { hour: 4, minute: [] },
+      { hour: 5, minute: [] },
+      { hour: 6, minute: [] },
+      { hour: 7, minute: [] },
+      { hour: 8, minute: [] },
+      { hour: 18, minute: [] },
+      { hour: 19, minute: [] },
+      { hour: 20, minute: [] },
+      { hour: 21, minute: [] },
+      { hour: 22, minute: [] },
+      { hour: 23, minute: [] },
+    ],
+  },
+  render: (args) => {
+    const [value, setValue] = React.useState(new Date())
+    return <TimePicker {...args} value={value} onChange={setValue} />
+  },
+}
+
+export const MinMaxHour: Story = {
+  args: {
+    minHour: 9,
+    maxHour: 17,
   },
   render: (args) => {
     const [value, setValue] = React.useState(new Date())

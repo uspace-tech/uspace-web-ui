@@ -17,28 +17,37 @@ type TimePickerProps = {
     hour: Hour
     minute: Minute[]
   }>
-  /// 0509
+  /// 0509 @deprecated
   minHour?: Hour
   maxHour?: Hour
+  /// 0513 不能與 availableGroup 一起使用
+  minDateTime?: Date
+  maxDateTime?: Date
 }
 
 /**
  * 留意如果傳入的 value Date 的分鐘不是整數，不會顯示任何分鐘（即沒有預設選項）
  */
-export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, availableGroup, minHour, maxHour }: TimePickerProps) => {
+export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, availableGroup, minDateTime, maxDateTime }: TimePickerProps) => {
   const chosenHour = value.getHours()
   const chosenMinute = value.getMinutes()
   // minuteView 只有整數，但怕使用者忘記點分，故先不處理
 
-  const filteredHourView = useMemo(
-    () =>
-      hourView.filter((hour) => {
-        if (minHour && hour < minHour) return false
-        if (maxHour && hour > maxHour) return false
-        return true
-      }),
-    [minHour, maxHour]
-  )
+  const filteredHourView = useMemo(() => {
+    if (!minDateTime || !maxDateTime) return hourView
+    // minDateTime 要先找到最近的 minuteStep 的倍數
+    const _minDateTime = new Date(minDateTime)
+    _minDateTime.setMinutes(Math.ceil(_minDateTime.getMinutes() / minuteStep) * minuteStep)
+    // maxDateTime 要先找到最近的 minuteStep 的倍數
+    const _maxDateTime = new Date(maxDateTime)
+    _maxDateTime.setMinutes(Math.floor(maxDateTime.getMinutes() / minuteStep) * minuteStep)
+
+    return hourView.filter((hour) => {
+      const minHour = new Date(_minDateTime).getHours()
+      const maxHour = new Date(_maxDateTime).getHours()
+      return hour >= minHour && hour <= maxHour
+    })
+  }, [minDateTime, maxDateTime])
 
   const steppedMinuteView = useMemo(
     () => (minuteStep ? minuteView.filter((minute) => minute % minuteStep === 0) : minuteView),
@@ -47,12 +56,32 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, avail
   const filteredMinuteView = useMemo(
     () =>
       steppedMinuteView.filter((minute) => {
-        // availableGroup 限制組合時間
+        if (minDateTime) {
+          const _minDateTime = new Date(minDateTime)
+          const minHour = _minDateTime.getHours()
+          if (minHour === chosenHour) {
+            const minMinute = _minDateTime.getMinutes()
+            console.log(minMinute, minute)
+            return minute >= minMinute
+          }
+        }
+
+        if (maxDateTime) {
+          const _maxDateTime = new Date(maxDateTime)
+          console.log("cc", _maxDateTime)
+          const maxHour = _maxDateTime.getHours()
+          if (maxHour === chosenHour) {
+            const maxMinute = _maxDateTime.getMinutes()
+            return minute <= maxMinute
+          }
+        }
+
+        // availableGroup 限制組合時間 ， 不能與 minDateTime | maxDateTime 一起使用
         const group = availableGroup?.find((group) => group.hour === chosenHour)
         if (!group) return true
         return group.minute.includes(minute)
       }),
-    [steppedMinuteView, availableGroup, chosenHour]
+    [steppedMinuteView, availableGroup, chosenHour, minDateTime, maxDateTime]
   )
 
   React.useEffect(() => {

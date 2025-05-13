@@ -8,7 +8,12 @@ const meta: Meta<typeof TimePicker> = {
   argTypes: {
     value: { control: false, description: "選取的時間" },
     minuteStep: { control: "number", description: "分鐘間隔，5 | 10 | 15 | 30" },
-    availableGroup: { control: "object", description: "可選擇的時間組合，若特定hour未傳入，則會顯示該小時所有分鐘" },
+    availableGroup: {
+      control: "object",
+      description: "可選擇的時間組合，若特定hour未傳入，則會顯示該小時所有分鐘，不能與 minDateTime | maxDateTime 一起使用",
+    },
+    minDateTime: { control: "date", description: "最小可選擇的時間，不能與 availableGroup 一起使用" },
+    maxDateTime: { control: "date", description: "最大可選擇的時間，不能與 availableGroup 一起使用" },
   },
 } satisfies Meta<typeof TimePicker>
 
@@ -42,10 +47,11 @@ export const Default: Story = {
   },
 }
 
-export const MinMaxHour: Story = {
+export const MinMaxDateTime: Story = {
   args: {
-    minHour: 9,
-    maxHour: 17,
+    minDateTime: new Date(2025, 5, 13, 11, 16, 0),
+    maxDateTime: new Date(2025, 5, 13, 17, 0, 0),
+    minuteStep: 15,
   },
   render: (args) => {
     const [value, setValue] = React.useState(new Date())

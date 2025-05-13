@@ -61,14 +61,12 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, avail
           const minHour = _minDateTime.getHours()
           if (minHour === chosenHour) {
             const minMinute = _minDateTime.getMinutes()
-            console.log(minMinute, minute)
             return minute >= minMinute
           }
         }
 
         if (maxDateTime) {
           const _maxDateTime = new Date(maxDateTime)
-          console.log("cc", _maxDateTime)
           const maxHour = _maxDateTime.getHours()
           if (maxHour === chosenHour) {
             const maxMinute = _maxDateTime.getMinutes()

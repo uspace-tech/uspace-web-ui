@@ -1,3 +1,15 @@
+# v0.1.23 (Tue May 13 2025)
+
+#### ⚠️ Pushed to `main`
+
+- chore: 移除log ([@wlcharlie](https://github.com/wlcharlie))
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
 # v0.1.22 (Tue May 13 2025)
 
 #### ⚠️ Pushed to `main`

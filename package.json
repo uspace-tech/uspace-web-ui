@@ -1,7 +1,7 @@
 {
   "name": "@uspace-tech/web-ui",
   "private": false,
-  "version": "0.1.21",
+  "version": "0.1.22",
   "description": "",
   "main": "dist/src/index.js",
   "types": "dist/types/index.d.ts",

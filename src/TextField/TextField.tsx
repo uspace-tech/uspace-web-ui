@@ -1,6 +1,6 @@
 "use client"
 
-import React from "react"
+import React, { forwardRef } from "react"
 
 import { createSlotRecipeContext, HTMLChakraProps, Icon, RecipeVariantProps } from "@chakra-ui/react"
 import { MdClose } from "react-icons/md"
@@ -28,11 +28,17 @@ type TextFieldProps = {
   rootProps?: TextFieldRootProps
 } & TextFieldInputProps
 
-export const TextField = (props: TextFieldProps) => {
+const TextField = forwardRef((props: TextFieldProps, ref: React.Ref<HTMLInputElement>) => {
   const { label, className, placeholder, required, onClear, rootProps, ...restProps } = props
   return (
     <TextFieldRoot {...rootProps}>
-      <TextFieldInput required={required} className={(className || "") + " peer"} placeholder={placeholder || " "} {...restProps} />
+      <TextFieldInput
+        required={required}
+        className={(className || "") + " peer"}
+        placeholder={placeholder || " "}
+        {...restProps}
+        ref={ref}
+      />
       <TextFieldLabel {...(required ? { "data-required": true } : {})}>{label}</TextFieldLabel>
       {onClear && (
         <TextFieldClear onClick={onClear}>
@@ -43,4 +49,7 @@ export const TextField = (props: TextFieldProps) => {
       )}
     </TextFieldRoot>
   )
-}
+})
+TextField.displayName = "TextField"
+
+export { TextField }

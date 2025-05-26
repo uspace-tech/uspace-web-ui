@@ -73,6 +73,7 @@ interface ModalProps {
   text?: string
   imageUrl?: string
   headerProps?: React.ComponentProps<typeof ModalHeader>
+  bodyProps?: React.ComponentProps<typeof ModalBody>
   children?: React.ReactNode
   action?: React.ReactNode
   onClose: () => void
@@ -87,7 +88,7 @@ interface ModalProps {
  * - 下方按鈕空間 （不包含按鈕 自行發揮）
  */
 export const Modal = (props: ModalProps) => {
-  const { open, title, subtitle, text, imageUrl, headerProps, children, action, onClose, onPrevStep } = props
+  const { open, title, subtitle, text, imageUrl, headerProps, bodyProps, children, action, onClose, onPrevStep } = props
 
   const handlePrevStep = () => {
     onPrevStep?.()
@@ -129,7 +130,7 @@ export const Modal = (props: ModalProps) => {
               <MdClose />
             </ModalIcon>
           </ModalHeader>
-          <ModalBody>
+          <ModalBody {...bodyProps}>
             {title && <ModalTitle>{title}</ModalTitle>}
             {subtitle && <ModalSubtitle>{subtitle}</ModalSubtitle>}
             {text && <ModalText>{text}</ModalText>}

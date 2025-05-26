@@ -1,3 +1,15 @@
+# v0.2.2 (Mon May 26 2025)
+
+#### ⚠️ Pushed to `main`
+
+- feat: Modal 新增 bodyProps ([@wlcharlie](https://github.com/wlcharlie))
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
 # v0.1.25 (Mon May 26 2025)
 
 #### ⚠️ Pushed to `main`

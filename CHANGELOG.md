@@ -1,3 +1,15 @@
+# v0.1.25 (Mon May 26 2025)
+
+#### ⚠️ Pushed to `main`
+
+- chore: 版本依賴升級 ([@wlcharlie](https://github.com/wlcharlie))
+
+#### Authors: 1
+
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
 # v0.1.24 (Wed May 14 2025)
 
 #### ⚠️ Pushed to `main`

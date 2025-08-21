@@ -9,7 +9,7 @@ import { defineSlotRecipe } from "@chakra-ui/react"
  */
 export const textFieldRecipe = defineSlotRecipe({
   className: "textField",
-  slots: ["root", "input", "label", "clear"],
+  slots: ["root", "input", "label", "clear", "trailing"],
   base: {
     root: {
       display: "flex",
@@ -34,6 +34,7 @@ export const textFieldRecipe = defineSlotRecipe({
 
       textStyle: "notoP16",
       color: "text.primary",
+      caretColor: "text.primary",
 
       _focus: {
         _placeholder: {
@@ -96,6 +97,17 @@ export const textFieldRecipe = defineSlotRecipe({
       _peerPlaceholderShown: {
         display: "none",
       },
+    },
+    trailing: {
+      position: "absolute",
+      top: "50%",
+      transform: "translateY(-50%)",
+      right: "16px",
+      zIndex: "1",
+      
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
     },
   },
 })

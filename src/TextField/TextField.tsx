@@ -22,14 +22,18 @@ const TextFieldLabel = withContext<HTMLSpanElement, TextFieldLabelProps>("span",
 interface TextFieldClearProps extends HTMLChakraProps<"button", RecipeVariantProps<typeof textFieldRecipe>> {}
 const TextFieldClear = withContext<HTMLButtonElement, TextFieldClearProps>("button", "clear")
 
+interface TextFieldTrailingProps extends HTMLChakraProps<"div", RecipeVariantProps<typeof textFieldRecipe>> {}
+const TextFieldTrailing = withContext<HTMLDivElement, TextFieldTrailingProps>("div", "trailing")
+
 type TextFieldProps = {
   label: string
   onClear?: () => void
+  renderTrailingComponent?: () => React.ReactNode
   rootProps?: TextFieldRootProps
 } & TextFieldInputProps
 
 const TextField = forwardRef((props: TextFieldProps, ref: React.Ref<HTMLInputElement>) => {
-  const { label, className, placeholder, required, onClear, rootProps, ...restProps } = props
+  const { label, className, placeholder, required, onClear, renderTrailingComponent, rootProps, ...restProps } = props
   return (
     <TextFieldRoot {...rootProps}>
       <TextFieldInput
@@ -46,6 +50,11 @@ const TextField = forwardRef((props: TextFieldProps, ref: React.Ref<HTMLInputEle
             <MdClose />
           </Icon>
         </TextFieldClear>
+      )}
+      {renderTrailingComponent && (
+        <TextFieldTrailing>
+          {renderTrailingComponent()}
+        </TextFieldTrailing>
       )}
     </TextFieldRoot>
   )

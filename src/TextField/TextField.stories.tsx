@@ -3,6 +3,8 @@ import type { Meta, StoryObj } from "@storybook/react"
 
 import { TextField } from "./TextField"
 import { expect, userEvent } from "@storybook/test"
+import { Button, IconButton, Icon } from "@chakra-ui/react"
+import { MdSearch, MdSend } from "react-icons/md"
 
 const meta = {
   title: "UPSACE/TextField",
@@ -24,6 +26,7 @@ const meta = {
     placeholder: { control: "text", description: "輸入框建議文字，通常是指資料格式" },
     required: { control: "boolean", description: "是否為必填" },
     onClear: { control: false, description: "當清除按鈕被點擊的 callback，有傳入時才會顯示 icon" },
+    renderTrailingComponent: { control: false, description: "自訂尾端元件的 render function" },
   },
 } satisfies Meta<typeof TextField>
 
@@ -81,3 +84,34 @@ export const WithClear: Story = {
     expect(input!.value).toBe("")
   },
 }
+
+export const WithTrailingButton: Story = {
+  args: {
+    label: "Search",
+    placeholder: "Enter search term...",
+    renderTrailingComponent: () => (
+      <Button size="sm" colorPalette="blue" onClick={() => alert('Search clicked!')}>
+        <Icon><MdSearch /></Icon>
+        Search
+      </Button>
+    ),
+  },
+}
+
+export const WithTrailingIconButton: Story = {
+  args: {
+    label: "Message",
+    placeholder: "Type your message...",
+    renderTrailingComponent: () => (
+      <IconButton 
+        size="sm" 
+        colorPalette="green" 
+        onClick={() => alert('Send clicked!')}
+        aria-label="Send message"
+      >
+        <Icon><MdSend /></Icon>
+      </IconButton>
+    ),
+  },
+}
+

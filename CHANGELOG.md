@@ -1,3 +1,15 @@
+# v0.3.2 (Thu Aug 21 2025)
+
+#### ⚠️ Pushed to `main`
+
+- update (wl00606352@gmail.com)
+
+#### Authors: 1
+
+- Charlie Chiou (wl00606352@gmail.com)
+
+---
+
 # v0.2.3 (Thu Aug 21 2025)
 
 #### ⚠️ Pushed to `main`

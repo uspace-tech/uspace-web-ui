@@ -1,3 +1,19 @@
+# v0.2.3 (Thu Aug 21 2025)
+
+#### ⚠️ Pushed to `main`
+
+- update (wl00606352@gmail.com)
+- feat: Add ColorModeButton to Storybook and update Modal background (wl00606352@gmail.com)
+- docs: Update design system documentation with proper table formatting (wl00606352@gmail.com)
+- feat: Add renderTrailingComponent to TextField and fix text.primary color token (wl00606352@gmail.com)
+- feat: Add custom config support to Provider and design system documentation (wl00606352@gmail.com)
+
+#### Authors: 1
+
+- Charlie Chiou (wl00606352@gmail.com)
+
+---
+
 # v0.2.2 (Mon May 26 2025)
 
 #### ⚠️ Pushed to `main`

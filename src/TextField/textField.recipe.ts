@@ -102,9 +102,9 @@ export const textFieldRecipe = defineSlotRecipe({
       position: "absolute",
       top: "50%",
       transform: "translateY(-50%)",
-      right: "16px",
+      right: "4px",
       zIndex: "1",
-      
+
       display: "flex",
       alignItems: "center",
       justifyContent: "center",

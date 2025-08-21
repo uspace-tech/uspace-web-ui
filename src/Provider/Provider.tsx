@@ -19,7 +19,7 @@ export function Provider({ customConfig, ...colorModeProps }: ProviderProps) {
 
     // Merge the default config with the custom config
     const mergedConfig = mergeConfigs(defaultThemeConfig, customConfig)
-    
+
     // Create a new system with the merged config
     return createSystem(defaultConfig, mergedConfig)
   }, [customConfig])

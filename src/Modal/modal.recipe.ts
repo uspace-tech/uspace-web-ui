@@ -12,7 +12,7 @@ export const modalRecipe = defineSlotRecipe({
     },
     content: {
       width: "100%",
-      backgroundColor: "white",
+      backgroundColor: "materialBg",
       borderTopLeftRadius: "16px",
       borderTopRightRadius: "16px",
       boxShadow: "0px -2px 6px 1px rgba(0, 0, 0, 0.12)",

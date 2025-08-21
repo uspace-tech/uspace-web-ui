@@ -90,8 +90,10 @@ export const WithTrailingButton: Story = {
     label: "Search",
     placeholder: "Enter search term...",
     renderTrailingComponent: () => (
-      <Button size="sm" colorPalette="blue" onClick={() => alert('Search clicked!')}>
-        <Icon><MdSearch /></Icon>
+      <Button size="sm" colorPalette="blue" onClick={() => alert("Search clicked!")}>
+        <Icon>
+          <MdSearch />
+        </Icon>
         Search
       </Button>
     ),
@@ -103,15 +105,11 @@ export const WithTrailingIconButton: Story = {
     label: "Message",
     placeholder: "Type your message...",
     renderTrailingComponent: () => (
-      <IconButton 
-        size="sm" 
-        colorPalette="green" 
-        onClick={() => alert('Send clicked!')}
-        aria-label="Send message"
-      >
-        <Icon><MdSend /></Icon>
+      <IconButton size="sm" colorPalette="green" onClick={() => alert("Send clicked!")} aria-label="Send message">
+        <Icon>
+          <MdSend />
+        </Icon>
       </IconButton>
     ),
   },
 }
-

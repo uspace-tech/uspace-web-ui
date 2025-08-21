@@ -2,6 +2,7 @@ import React from "react"
 import type { Preview } from "@storybook/react"
 import { Title, Subtitle, Description, Primary, Controls, Stories } from "@storybook/blocks"
 import { Provider } from "../src/Provider"
+import { ColorModeButton } from "../src/Provider/ColorModeProvider"
 
 const preview: Preview = {
   parameters: {
@@ -18,6 +19,7 @@ const preview: Preview = {
   decorators: [
     (Story) => (
       <Provider defaultTheme="light">
+        <ColorModeButton />
         <Story />
       </Provider>
     ),

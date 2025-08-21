@@ -4,7 +4,7 @@ import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
 
 # Color System
 
-Our color system provides a consistent palette for building UI components across the application.
+Our color system provides a consistent palette with full dark mode support for building UI components across the application.
 
 ## Brand Colors
 
@@ -46,18 +46,24 @@ Our color system provides a consistent palette for building UI components across
   />
 </ColorPalette>
 
-## Text Colors
+## Text Colors (Semantic Tokens)
 
 <ColorPalette>
   <ColorItem
     title="Text Primary"
-    subtitle="text, text.primary"
-    colors={{ Primary: '#333333' }}
+    subtitle="text.primary"
+    colors={{ 
+      Light: '#333333',
+      Dark: '#FFFFFF'
+    }}
   />
   <ColorItem
     title="Text Secondary"
     subtitle="text.secondary"
-    colors={{ Secondary: '#748598' }}
+    colors={{ 
+      Light: '#748598',
+      Dark: '#CCCCCC'
+    }}
   />
 </ColorPalette>
 
@@ -71,13 +77,16 @@ Our color system provides a consistent palette for building UI components across
   />
 </ColorPalette>
 
-## Background & Layout
+## Background & Layout (Semantic Tokens)
 
 <ColorPalette>
   <ColorItem
     title="Material Background"
     subtitle="materialBg"
-    colors={{ Background: '#F3F4F9' }}
+    colors={{ 
+      Light: '#F3F4F9',
+      Dark: '#484848'
+    }}
   />
   <ColorItem
     title="Divider"
@@ -86,6 +95,23 @@ Our color system provides a consistent palette for building UI components across
   />
 </ColorPalette>
 
+## Color Token Architecture
+
+Our color system uses a two-tier approach:
+
+### Raw Color Tokens
+Base color values prefixed with `_`:
+- `_text._primary`, `_text._secondary`, `_text._secondaryDark`
+- `_materialBg`, `_materialBgDark`
+- `_disabled._DEFAULT`, `_disabled._grey`
+- `_primary`, `_blue`, `_green`, `_yellow`, `_red`, `_white`
+
+### Semantic Tokens
+Context-aware tokens that automatically switch between light and dark modes:
+- `text.primary`: `#333333` (light) → `#FFFFFF` (dark)
+- `text.secondary`: `#748598` (light) → `#CCCCCC` (dark)
+- `materialBg`: `#F3F4F9` (light) → `#484848` (dark)
+
 ## Usage
 
 ### In Chakra UI Components
@@ -93,7 +119,7 @@ Our color system provides a consistent palette for building UI components across
 ```tsx
 import { Box, Text } from "@chakra-ui/react"
 
-// Using semantic color tokens
+// Using semantic color tokens (recommended)
 <Box bg="materialBg" borderColor="divider">
   <Text color="text.primary">Main content</Text>
   <Text color="text.secondary">Supporting information</Text>
@@ -105,25 +131,106 @@ import { Box, Text } from "@chakra-ui/react"
 </Box>
 
 // Using state colors
-<Button isDisabled bg="disabled.grey">
+<Button disabled bg="disabled.grey">
   Disabled Button
 </Button>
 ```
 
+### Dark Mode Support
+
+All semantic tokens automatically adapt to the current color mode:
+
+```tsx
+// These will automatically switch colors in dark mode
+<Text color="text.primary">Always readable main text</Text>
+<Text color="text.secondary">Always readable secondary text</Text>
+<Box bg="materialBg">Adaptive background</Box>
+```
+
+### Color Mode Testing
+
+Use the color mode toggle in Storybook to test how components adapt between light and dark themes.
+
 ### Color Accessibility
 
-- **Text Colors**: Ensure sufficient contrast ratios between text and background colors
-- **Primary Text** (#333333) on **White** (#FFFFFF) provides excellent readability
-- **Secondary Text** (#748598) should be used for less important information
+- **Text Colors**: Semantic tokens ensure sufficient contrast ratios in both light and dark modes
+- **Primary Text**: Always provides excellent readability against backgrounds
+- **Secondary Text**: Maintains proper contrast while being visually secondary
 - **UI Colors**: Use sparingly for interactive elements and status indicators
 
 ### Semantic Usage
 
-| Color | Usage |
-|-------|-------|
-| **Primary** | Main brand color, primary actions |
-| **Blue** | Links, information states |
-| **Green** | Success states, positive actions |
-| **Yellow** | Warning states, caution |
-| **Red** | Error states, destructive actions |
-| **Disabled** | Inactive elements, disabled states |
+<table>
+  <thead>
+    <tr>
+      <th>Token</th>
+      <th>Light Mode</th>
+      <th>Dark Mode</th>
+      <th>Usage</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>text.primary</strong></td>
+      <td>#333333</td>
+      <td>#FFFFFF</td>
+      <td>Main content text</td>
+    </tr>
+    <tr>
+      <td><strong>text.secondary</strong></td>
+      <td>#748598</td>
+      <td>#CCCCCC</td>
+      <td>Supporting text, labels</td>
+    </tr>
+    <tr>
+      <td><strong>materialBg</strong></td>
+      <td>#F3F4F9</td>
+      <td>#484848</td>
+      <td>Card backgrounds, input fields</td>
+    </tr>
+    <tr>
+      <td><strong>primary</strong></td>
+      <td>#28292B</td>
+      <td>#28292B</td>
+      <td>Brand color, primary actions</td>
+    </tr>
+    <tr>
+      <td><strong>blue</strong></td>
+      <td>#0067D8</td>
+      <td>#0067D8</td>
+      <td>Links, information states</td>
+    </tr>
+    <tr>
+      <td><strong>green</strong></td>
+      <td>#15DD73</td>
+      <td>#15DD73</td>
+      <td>Success states</td>
+    </tr>
+    <tr>
+      <td><strong>yellow</strong></td>
+      <td>#E6A807</td>
+      <td>#E6A807</td>
+      <td>Warning states</td>
+    </tr>
+    <tr>
+      <td><strong>red</strong></td>
+      <td>#F45656</td>
+      <td>#F45656</td>
+      <td>Error states</td>
+    </tr>
+    <tr>
+      <td><strong>disabled</strong></td>
+      <td>#BDC3D0</td>
+      <td>#BDC3D0</td>
+      <td>Inactive elements</td>
+    </tr>
+  </tbody>
+</table>
+
+## Migration Notes
+
+If you were using the old color tokens, update your code:
+- `text` → `text.primary`
+- `text.primary` → `text.primary` (no change needed)
+- `text.secondary` → `text.secondary` (no change needed)
+- `disabled` → `disabled.grey`

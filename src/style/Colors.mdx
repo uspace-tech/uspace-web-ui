@@ -1,0 +1,129 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/blocks';
+
+<Meta title="Design System/Colors" />
+
+# Color System
+
+Our color system provides a consistent palette for building UI components across the application.
+
+## Brand Colors
+
+<ColorPalette>
+  <ColorItem
+    title="Primary"
+    subtitle="primary"
+    colors={{ Primary: '#28292B' }}
+  />
+</ColorPalette>
+
+## UI Colors
+
+<ColorPalette>
+  <ColorItem
+    title="Blue"
+    subtitle="blue"
+    colors={{ Blue: '#0067D8' }}
+  />
+  <ColorItem
+    title="Green"
+    subtitle="green"
+    colors={{ Green: '#15DD73' }}
+  />
+  <ColorItem
+    title="Yellow"
+    subtitle="yellow"
+    colors={{ Yellow: '#E6A807' }}
+  />
+  <ColorItem
+    title="Red"
+    subtitle="red"
+    colors={{ Red: '#F45656' }}
+  />
+  <ColorItem
+    title="White"
+    subtitle="white"
+    colors={{ White: '#FFFFFF' }}
+  />
+</ColorPalette>
+
+## Text Colors
+
+<ColorPalette>
+  <ColorItem
+    title="Text Primary"
+    subtitle="text, text.primary"
+    colors={{ Primary: '#333333' }}
+  />
+  <ColorItem
+    title="Text Secondary"
+    subtitle="text.secondary"
+    colors={{ Secondary: '#748598' }}
+  />
+</ColorPalette>
+
+## State Colors
+
+<ColorPalette>
+  <ColorItem
+    title="Disabled"
+    subtitle="disabled, disabled.grey"
+    colors={{ Disabled: '#BDC3D0' }}
+  />
+</ColorPalette>
+
+## Background & Layout
+
+<ColorPalette>
+  <ColorItem
+    title="Material Background"
+    subtitle="materialBg"
+    colors={{ Background: '#F3F4F9' }}
+  />
+  <ColorItem
+    title="Divider"
+    subtitle="divider"
+    colors={{ Divider: 'rgba(0, 0, 0, 0.1)' }}
+  />
+</ColorPalette>
+
+## Usage
+
+### In Chakra UI Components
+
+```tsx
+import { Box, Text } from "@chakra-ui/react"
+
+// Using semantic color tokens
+<Box bg="materialBg" borderColor="divider">
+  <Text color="text.primary">Main content</Text>
+  <Text color="text.secondary">Supporting information</Text>
+</Box>
+
+// Using UI colors
+<Box bg="blue" color="white">
+  Blue background with white text
+</Box>
+
+// Using state colors
+<Button isDisabled bg="disabled.grey">
+  Disabled Button
+</Button>
+```
+
+### Color Accessibility
+
+- **Text Colors**: Ensure sufficient contrast ratios between text and background colors
+- **Primary Text** (#333333) on **White** (#FFFFFF) provides excellent readability
+- **Secondary Text** (#748598) should be used for less important information
+- **UI Colors**: Use sparingly for interactive elements and status indicators
+
+### Semantic Usage
+
+| Color | Usage |
+|-------|-------|
+| **Primary** | Main brand color, primary actions |
+| **Blue** | Links, information states |
+| **Green** | Success states, positive actions |
+| **Yellow** | Warning states, caution |
+| **Red** | Error states, destructive actions |
+| **Disabled** | Inactive elements, disabled states |

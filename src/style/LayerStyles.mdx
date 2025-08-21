@@ -1,0 +1,151 @@
+import { Meta } from '@storybook/blocks';
+import { Box } from '@chakra-ui/react';
+
+<Meta title="Design System/Layer Styles" />
+
+# Layer Styles
+
+Predefined layer styles for common UI patterns that can be reused across components.
+
+## Available Layer Styles
+
+### floatBottom
+
+Fixed positioning at the bottom of the viewport. Useful for mobile-style bottom sheets or persistent bottom bars.
+
+```tsx
+const floatBottom = {
+  position: "fixed",
+  bottom: 0,
+  width: "full"
+}
+```
+
+**Usage:**
+```tsx
+<Box layerStyle="floatBottom">
+  Bottom-fixed content
+</Box>
+```
+
+### floatBottomActions
+
+Extended version of `floatBottom` with padding, border, and flex layout. Perfect for action bars with buttons.
+
+```tsx
+const floatBottomActions = {
+  position: "fixed",
+  bottom: 0,
+  width: "full",
+  px: 4,           // 16px horizontal padding
+  pt: 4,           // 16px top padding
+  pb: 8,           // 32px bottom padding (extra space for mobile safe areas)
+  gap: 2,          // 8px gap between items
+  display: "flex",
+  flexDir: "row",
+  borderTop: "1px solid {colors.divider}"
+}
+```
+
+**Usage:**
+```tsx
+<Box layerStyle="floatBottomActions">
+  <Button flex={1}>Cancel</Button>
+  <Button flex={1} colorScheme="blue">Confirm</Button>
+</Box>
+```
+
+## Examples
+
+### Bottom Navigation Bar
+
+```tsx
+import { Box, Button } from "@chakra-ui/react"
+
+function BottomNav() {
+  return (
+    <Box layerStyle="floatBottom" bg="white" borderTop="1px solid" borderColor="divider">
+      <HStack p={2} justify="space-around">
+        <IconButton icon={<HomeIcon />} />
+        <IconButton icon={<SearchIcon />} />
+        <IconButton icon={<ProfileIcon />} />
+      </HStack>
+    </Box>
+  )
+}
+```
+
+### Action Button Bar
+
+```tsx
+import { Box, Button } from "@chakra-ui/react"
+
+function ActionBar() {
+  return (
+    <Box layerStyle="floatBottomActions" bg="white">
+      <Button variant="outline" flex={1}>
+        取消
+      </Button>
+      <Button colorPalette="blue" flex={1}>
+        確認
+      </Button>
+    </Box>
+  )
+}
+```
+
+### Mobile-Style Bottom Sheet
+
+```tsx
+import { Box, VStack } from "@chakra-ui/react"
+
+function BottomSheet({ isOpen, children }) {
+  return (
+    <Box 
+      layerStyle="floatBottom" 
+      bg="white"
+      roundedTop="xl"
+      maxH="80vh"
+      transform={isOpen ? "translateY(0)" : "translateY(100%)"}
+      transition="transform 0.3s"
+    >
+      <VStack p={6}>
+        {children}
+      </VStack>
+    </Box>
+  )
+}
+```
+
+## Best Practices
+
+### Mobile Considerations
+
+1. **Safe Area Padding**: The `floatBottomActions` style includes extra bottom padding (32px) to account for mobile safe areas
+2. **Touch Targets**: Ensure buttons and interactive elements are at least 44px in height for mobile usability
+
+### Z-Index Management
+
+When using fixed positioning layers:
+- Consider z-index conflicts with other fixed elements
+- Use Chakra's z-index tokens for consistency
+- Test with modals and other overlays
+
+### Responsive Design
+
+```tsx
+// Responsive bottom bar that becomes a sidebar on desktop
+<Box 
+  layerStyle={["floatBottom", "floatBottom", "none"]}
+  position={[null, null, "sticky"]}
+  width={[null, null, "250px"]}
+>
+  Navigation content
+</Box>
+```
+
+### Accessibility
+
+- Ensure fixed bottom elements don't cover important content
+- Provide adequate spacing above fixed bottom elements
+- Consider keyboard navigation order with fixed positioning

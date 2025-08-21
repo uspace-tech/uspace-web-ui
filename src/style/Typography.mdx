@@ -1,0 +1,124 @@
+import { Meta, Typeset } from '@storybook/blocks';
+
+<Meta title="Design System/Typography" />
+
+# Typography System
+
+Our typography system provides consistent text styles for both Chinese and English content.
+
+## Font Families
+
+### Noto Sans TC
+Primary font for Chinese content with excellent CJK character support.
+
+### Poppins
+Primary font for English content, falling back to Noto Sans TC for Chinese characters.
+
+## Noto Sans TC Text Styles
+
+### Headings
+
+<Typeset
+  fontFamily='"Noto Sans TC", sans-serif'
+  fontSizes={[40, 32, 24, 20, 16, 14, 12]}
+  fontWeight={700}
+  sampleText="標題文字 Heading Text"
+  labels={['notoH40', 'notoH32', 'notoH24', 'notoH20', 'notoH16', 'notoH14', 'notoH12']}
+/>
+
+### Headings with Decoration
+
+Text styles with underline decoration for special emphasis:
+
+- **notoH16D**: 16px heading with underline
+- **notoH14D**: 14px heading with underline
+
+### Paragraphs
+
+<Typeset
+  fontFamily='"Noto Sans TC", sans-serif'
+  fontSizes={[24, 20, 16, 14, 12]}
+  fontWeight={400}
+  sampleText="段落文字展示 Paragraph text example"
+  labels={['notoP24', 'notoP20', 'notoP16', 'notoP14', 'notoP12']}
+/>
+
+### Paragraphs with Decoration
+
+Text styles with underline decoration:
+
+- **notoP16D**: 16px paragraph with underline
+- **notoP14D**: 14px paragraph with underline
+
+## Poppins Text Styles
+
+### Headings
+
+<Typeset
+  fontFamily='Poppins, "Noto Sans TC", sans-serif'
+  fontSizes={[24, 20, 16, 14, 12]}
+  fontWeight={700}
+  sampleText="English Heading Text"
+  labels={['poppinsH24', 'poppinsH20', 'poppinsH16', 'poppinsH14', 'poppinsH12']}
+/>
+
+### Paragraphs
+
+<Typeset
+  fontFamily='Poppins, "Noto Sans TC", sans-serif'
+  fontSizes={[16, 14, 12]}
+  fontWeight={400}
+  sampleText="English paragraph text for body content"
+  labels={['poppinsP16', 'poppinsP14', 'poppinsP12']}
+/>
+
+## Usage
+
+### In Chakra UI Components
+
+```tsx
+import { Text, Heading } from "@chakra-ui/react"
+
+// Using Noto Sans TC styles
+<Heading textStyle="notoH24">大標題 Main Heading</Heading>
+<Text textStyle="notoP16">這是一段中文內容的範例文字。</Text>
+
+// Using Poppins styles
+<Heading textStyle="poppinsH20">English Heading</Heading>
+<Text textStyle="poppinsP14">This is an example of English body text.</Text>
+
+// Using decorated styles
+<Text textStyle="notoP16D">帶有下劃線的重要文字</Text>
+```
+
+## Typography Guidelines
+
+### Language-Specific Usage
+
+1. **Chinese Content**: Use `noto*` text styles for optimal CJK character rendering
+2. **English Content**: Use `poppins*` text styles for better Latin character aesthetics
+3. **Mixed Content**: Choose based on the primary language of the content
+
+### Hierarchy Best Practices
+
+| Level | Chinese | English | Usage |
+|-------|---------|---------|-------|
+| **H1** | notoH40 or notoH32 | poppinsH24 | Page titles, main headings |
+| **H2** | notoH24 | poppinsH20 | Section headings |
+| **H3** | notoH20 | poppinsH16 | Subsection headings |
+| **H4** | notoH16 | poppinsH14 | Card titles, labels |
+| **Body** | notoP16 | poppinsP16 | Main content |
+| **Small** | notoP14 or notoP12 | poppinsP14 or poppinsP12 | Captions, helper text |
+
+### Accessibility
+
+- Maintain a clear hierarchy with appropriate heading levels
+- Ensure sufficient contrast between text and background colors
+- Use larger text sizes (16px+) for body content
+- Reserve 12px text for non-critical information only
+
+### Line Height Guidelines
+
+All text styles include appropriate line heights for optimal readability:
+- Headings: 1.2x font size
+- Body text: 1.5x font size

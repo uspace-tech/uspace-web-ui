@@ -3,7 +3,7 @@ import textStyles from "./textStyles"
 import { colorTokens, semanticTokens } from "./colors"
 import layerStyles from "./layers"
 
-const config = defineConfig({
+export const config = defineConfig({
   theme: {
     textStyles: textStyles,
     tokens: colorTokens,

@@ -1,3 +1,15 @@
+# v0.3.3 (Thu Apr 23 2026)
+
+#### 🐛 Bug Fix
+
+- fix: 修改邏輯、樣式 [#3](https://github.com/uspace-tech/uspace-web-ui/pull/3) ([@nicoliao1126](https://github.com/nicoliao1126))
+
+#### Authors: 1
+
+- [@nicoliao1126](https://github.com/nicoliao1126)
+
+---
+
 # v0.3.2 (Thu Aug 21 2025)
 
 #### ⚠️ Pushed to `main`

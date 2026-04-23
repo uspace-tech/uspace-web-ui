@@ -89,6 +89,23 @@
 
 - fix: 修改邏輯、樣式 [#3](https://github.com/uspace-tech/uspace-web-ui/pull/3) ([@nicoliao1126](https://github.com/nicoliao1126))
 
+#### ⚠️ Pushed to `main`
+
+- chore: adjust time picker logic ([@wlcharlie](https://github.com/wlcharlie))
+
+#### Authors: 2
+
+- [@nicoliao1126](https://github.com/nicoliao1126)
+- Charlie Chiu ([@wlcharlie](https://github.com/wlcharlie))
+
+---
+
+# v0.3.3 (Thu Apr 23 2026)
+
+#### 🐛 Bug Fix
+
+- fix: 修改邏輯、樣式 [#3](https://github.com/uspace-tech/uspace-web-ui/pull/3) ([@nicoliao1126](https://github.com/nicoliao1126))
+
 #### Authors: 1
 
 - [@nicoliao1126](https://github.com/nicoliao1126)

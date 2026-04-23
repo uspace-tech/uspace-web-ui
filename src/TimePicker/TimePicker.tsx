@@ -34,6 +34,7 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, avail
   // minuteView 只有整數，但怕使用者忘記點分，故先不處理
 
   const filteredHourView = useMemo(() => {
+    if (availableGroup?.length) return availableGroup.map((group) => group.hour)
     if (!minDateTime || !maxDateTime) return hourView
     // minDateTime 要先找到最近的 minuteStep 的倍數
     const _minDateTime = new Date(minDateTime)
@@ -56,21 +57,21 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, avail
   const filteredMinuteView = useMemo(
     () =>
       steppedMinuteView.filter((minute) => {
-        if (minDateTime) {
-          const _minDateTime = new Date(minDateTime)
-          const minHour = _minDateTime.getHours()
-          if (minHour === chosenHour) {
-            const minMinute = _minDateTime.getMinutes()
-            return minute >= minMinute
-          }
-        }
-
         if (maxDateTime) {
           const _maxDateTime = new Date(maxDateTime)
           const maxHour = _maxDateTime.getHours()
           if (maxHour === chosenHour) {
             const maxMinute = _maxDateTime.getMinutes()
             return minute <= maxMinute
+          }
+        }
+
+        if (minDateTime) {
+          const _minDateTime = new Date(minDateTime)
+          const minHour = _minDateTime.getHours()
+          if (minHour === chosenHour) {
+            const minMinute = _minDateTime.getMinutes()
+            return minute >= minMinute
           }
         }
 
@@ -120,6 +121,7 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, avail
             alignItems="center"
             justifyContent="center"
             bg={hour === chosenHour ? "materialBg" : "transparent"}
+            border={hour === chosenHour ? "1px solid #748598" : "none"}
             borderRadius="8px"
             onClick={() => handleHourClick(hour)}
             my="1"
@@ -139,6 +141,7 @@ export const TimePicker = ({ value = new Date(), onChange, minuteStep = 5, avail
             alignItems="center"
             justifyContent="center"
             bg={minute === chosenMinute ? "materialBg" : "transparent"}
+            border={minute === chosenMinute ? "1px solid #748598" : "none"}
             borderRadius="8px"
             onClick={() => handleMinuteClick(minute)}
             my="1"
